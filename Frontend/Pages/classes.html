@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Classes | MST Room Allocation</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/classes.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">
+                MST
+            </div>
+
+            <div>
+                <h2>MST Allocation</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="menu-title">
+                MAIN MENU
+            </p>
+
+
+            <a href="dashboard.html" class="nav-link">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+
+            <a href="classes.html" class="nav-link active">
+                <span>▤</span>
+                Classes
+            </a>
+
+
+            <a href="students.html" class="nav-link">
+                <span>♙</span>
+                Students
+            </a>
+
+
+            <a href="classrooms.html" class="nav-link">
+                <span>⌂</span>
+                Classrooms
+            </a>
+
+
+            <a href="timetable.html" class="nav-link">
+                <span>▦</span>
+                Timetable
+            </a>
+
+
+            <a href="mst-schedule.html" class="nav-link">
+                <span>▣</span>
+                MST Schedule
+            </a>
+
+
+            <p class="menu-title">
+                ALLOCATION
+            </p>
+
+
+            <a href="allocation.html" class="nav-link">
+                <span>⊞</span>
+                Room Allocation
+            </a>
+
+
+            <a href="conflicts.html" class="nav-link">
+                <span>⚠</span>
+                Conflicts
+            </a>
+
+
+            <a href="reports.html" class="nav-link">
+                <span>▥</span>
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+
+            <a href="../index.html"
+               class="nav-link logout">
+
+                <span>↪</span>
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Classes</h1>
+
+                <p>
+                    Manage classes and sections
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+                    🔔
+                </button>
+
+
+                <div class="admin-profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Admin</strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <section class="page-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Class Management
+                    </h2>
+
+                    <p>
+                        Add, view, update and manage class sections.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openClassModal()">
+
+                    + Add Class
+
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH / FILTER -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search class or branch..."
+                        onkeyup="searchClasses()">
+
+                </div>
+
+
+                <select id="yearFilter"
+                        onchange="filterClasses()">
+
+                    <option value="all">
+                        All Years
+                    </option>
+
+                    <option value="2nd">
+                        2nd Year
+                    </option>
+
+                    <option value="3rd">
+                        3rd Year
+                    </option>
+
+                </select>
+
+
+                <select id="branchFilter"
+                        onchange="filterClasses()">
+
+                    <option value="all">
+                        All Branches
+                    </option>
+
+                    <option value="CSE">
+                        CSE
+                    </option>
+
+                    <option value="IT">
+                        IT
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CLASS TABLE -->
+
+            <div class="table-panel">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>
+                            Class / Section Records
+                        </h3>
+
+                        <p>
+                            Manage registered classes
+                        </p>
+
+                    </div>
+
+
+                    <span id="classCount">
+                        6 Classes
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="classTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Class
+                                </th>
+
+                                <th>
+                                    Branch
+                                </th>
+
+                                <th>
+                                    Year
+                                </th>
+
+                                <th>
+                                    Section
+                                </th>
+
+                                <th>
+                                    Students
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr data-branch="CSE"
+                                data-year="2nd">
+
+                                <td>
+                                    <strong>CSE-1</strong>
+                                </td>
+
+                                <td>
+                                    CSE
+                                </td>
+
+                                <td>
+                                    2nd Year
+                                </td>
+
+                                <td>
+                                    A
+                                </td>
+
+                                <td>
+                                    85
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('CSE-1')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('CSE-1')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-branch="CSE"
+                                data-year="2nd">
+
+                                <td>
+                                    <strong>CSE-2</strong>
+                                </td>
+
+                                <td>
+                                    CSE
+                                </td>
+
+                                <td>
+                                    2nd Year
+                                </td>
+
+                                <td>
+                                    B
+                                </td>
+
+                                <td>
+                                    85
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('CSE-2')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('CSE-2')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-branch="IT"
+                                data-year="2nd">
+
+                                <td>
+                                    <strong>IT-1</strong>
+                                </td>
+
+                                <td>
+                                    IT
+                                </td>
+
+                                <td>
+                                    2nd Year
+                                </td>
+
+                                <td>
+                                    A
+                                </td>
+
+                                <td>
+                                    70
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('IT-1')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('IT-1')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-branch="CSE"
+                                data-year="3rd">
+
+                                <td>
+                                    <strong>CSE-3</strong>
+                                </td>
+
+                                <td>
+                                    CSE
+                                </td>
+
+                                <td>
+                                    3rd Year
+                                </td>
+
+                                <td>
+                                    A
+                                </td>
+
+                                <td>
+                                    72
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('CSE-3')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('CSE-3')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-branch="CSE"
+                                data-year="3rd">
+
+                                <td>
+                                    <strong>CSE-4</strong>
+                                </td>
+
+                                <td>
+                                    CSE
+                                </td>
+
+                                <td>
+                                    3rd Year
+                                </td>
+
+                                <td>
+                                    B
+                                </td>
+
+                                <td>
+                                    70
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('CSE-4')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('CSE-4')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr data-branch="IT"
+                                data-year="3rd">
+
+                                <td>
+                                    <strong>IT-2</strong>
+                                </td>
+
+                                <td>
+                                    IT
+                                </td>
+
+                                <td>
+                                    3rd Year
+                                </td>
+
+                                <td>
+                                    A
+                                </td>
+
+                                <td>
+                                    68
+                                </td>
+
+                                <td>
+                                    <span class="status active-status">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editClass('IT-2')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteClass('IT-2')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD CLASS MODAL -->
+
+    <div id="classModal"
+         class="modal-overlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>Add New Class</h2>
+
+                    <p>
+                        Enter class and section details
+                    </p>
+
+                </div>
+
+                <button
+                    class="close-btn"
+                    onclick="closeClassModal()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <form id="classForm"
+                  onsubmit="saveClass(event)">
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Branch
+                        </label>
+
+                        <select id="branch"
+                                required>
+
+                            <option value="">
+                                Select Branch
+                            </option>
+
+                            <option value="CSE">
+                                CSE
+                            </option>
+
+                            <option value="IT">
+                                IT
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Year
+                        </label>
+
+                        <select id="year"
+                                required>
+
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option value="2nd">
+                                2nd Year
+                            </option>
+
+                            <option value="3rd">
+                                3rd Year
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Section
+                        </label>
+
+                        <input
+                            type="text"
+                            id="section"
+                            placeholder="Example: A"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Student Strength
+                        </label>
+
+                        <input
+                            type="number"
+                            id="strength"
+                            min="1"
+                            placeholder="Example: 70"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="closeClassModal()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Save Class
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/classes.js"></script>
+
+</body>
+
+</html>

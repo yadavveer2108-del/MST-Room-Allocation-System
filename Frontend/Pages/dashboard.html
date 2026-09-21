@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | MST Room Allocation</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-box">MST</div>
+
+            <div>
+                <h2>MST Allocation</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="nav-link active">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="classes.html" class="nav-link">
+                <span>▤</span>
+                Classes
+            </a>
+
+            <a href="students.html" class="nav-link">
+                <span>♙</span>
+                Students
+            </a>
+
+            <a href="classrooms.html" class="nav-link">
+                <span>⌂</span>
+                Classrooms
+            </a>
+
+            <a href="timetable.html" class="nav-link">
+                <span>▦</span>
+                Timetable
+            </a>
+
+            <a href="mst-schedule.html" class="nav-link">
+                <span>▣</span>
+                MST Schedule
+            </a>
+
+            <p class="menu-title">ALLOCATION</p>
+
+            <a href="allocation.html" class="nav-link">
+                <span>⊞</span>
+                Room Allocation
+            </a>
+
+            <a href="conflicts.html" class="nav-link">
+                <span>⚠</span>
+                Conflicts
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span>▥</span>
+                Reports
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="../index.html" class="nav-link logout">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Header -->
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome back, Admin</p>
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+                    🔔
+                </button>
+
+                <div class="admin-profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+                        <strong>Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Dashboard Content -->
+        <section class="dashboard-content">
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        👥
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Total Classes</span>
+                        <h2>6</h2>
+                        <small>2nd & 3rd Year</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        🎓
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Total Students</span>
+                        <h2>420</h2>
+                        <small>CS & IT</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🏫
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Classrooms</span>
+                        <h2>12</h2>
+                        <small>Available rooms</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📝
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Upcoming Exams</span>
+                        <h2>3</h2>
+                        <small>Scheduled MSTs</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Middle Section -->
+            <div class="dashboard-grid">
+
+                <!-- Upcoming Exams -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Upcoming Exams</h2>
+                            <p>Recently scheduled MST examinations</p>
+                        </div>
+
+                        <a href="timetable.html">View All</a>
+
+                    </div>
+
+
+                    <div class="exam-list">
+
+                        <div class="exam-item">
+
+                            <div class="exam-date">
+                                <strong>22</strong>
+                                <span>SEP</span>
+                            </div>
+
+                            <div class="exam-details">
+                                <strong>Data Structures</strong>
+                                <span>CSE 2nd Year • 10:00 AM - 12:00 PM</span>
+                            </div>
+
+                            <span class="status upcoming">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+
+                        <div class="exam-item">
+
+                            <div class="exam-date">
+                                <strong>24</strong>
+                                <span>SEP</span>
+                            </div>
+
+                            <div class="exam-details">
+                                <strong>Discrete Structures</strong>
+                                <span>CSE 2nd Year • 10:00 AM - 12:00 PM</span>
+                            </div>
+
+                            <span class="status upcoming">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+
+                        <div class="exam-item">
+
+                            <div class="exam-date">
+                                <strong>26</strong>
+                                <span>SEP</span>
+                            </div>
+
+                            <div class="exam-details">
+                                <strong>Database Management</strong>
+                                <span>IT 3rd Year • 02:00 PM - 04:00 PM</span>
+                            </div>
+
+                            <span class="status upcoming">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Allocation Status -->
+                <div class="panel allocation-status">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Allocation Status</h2>
+                            <p>Current system status</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-section">
+
+                        <div class="progress-label">
+                            <span>Rooms Allocated</span>
+                            <strong>8 / 12</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 67%;"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-box success">
+
+                        <div class="status-circle">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>No Conflicts Detected</strong>
+                            <p>Current timetable is conflict-free.</p>
+                        </div>
+
+                    </div>
+
+
+                    <button class="generate-btn"
+                            onclick="generateAllocation()">
+
+                        Generate Allocation
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Recent Allocations -->
+            <div class="panel recent-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Recent Allocations</h2>
+                        <p>Latest generated room allocations</p>
+                    </div>
+
+                    <a href="allocation.html">View All</a>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Room</th>
+                                <th>Subject</th>
+                                <th>Class</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Students</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td><strong>A-101</strong></td>
+
+                                <td>Data Structures</td>
+
+                                <td>CSE-1</td>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>10:00 - 12:00</td>
+
+                                <td>70</td>
+
+                                <td>
+                                    <span class="status allocated">
+                                        Allocated
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td><strong>A-102</strong></td>
+
+                                <td>Data Structures</td>
+
+                                <td>CSE-2</td>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>10:00 - 12:00</td>
+
+                                <td>70</td>
+
+                                <td>
+                                    <span class="status allocated">
+                                        Allocated
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td><strong>A-103</strong></td>
+
+                                <td>Data Structures</td>
+
+                                <td>IT</td>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>10:00 - 12:00</td>
+
+                                <td>65</td>
+
+                                <td>
+                                    <span class="status allocated">
+                                        Allocated
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

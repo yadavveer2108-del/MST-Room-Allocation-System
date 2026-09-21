@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Classrooms | MST Room Allocation</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/classrooms.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-box">MST</div>
+
+            <div>
+                <h2>MST Allocation</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="nav-link">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="classes.html" class="nav-link">
+                <span>▤</span>
+                Classes
+            </a>
+
+            <a href="students.html" class="nav-link">
+                <span>♙</span>
+                Students
+            </a>
+
+            <a href="classrooms.html" class="nav-link active">
+                <span>⌂</span>
+                Classrooms
+            </a>
+
+            <a href="timetable.html" class="nav-link">
+                <span>▦</span>
+                Timetable
+            </a>
+
+            <a href="mst-schedule.html" class="nav-link">
+                <span>▣</span>
+                MST Schedule
+            </a>
+
+
+            <p class="menu-title">ALLOCATION</p>
+
+            <a href="allocation.html" class="nav-link">
+                <span>⊞</span>
+                Room Allocation
+            </a>
+
+            <a href="conflicts.html" class="nav-link">
+                <span>⚠</span>
+                Conflicts
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span>▥</span>
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="../index.html"
+               class="nav-link logout">
+
+                <span>↪</span>
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Classrooms</h1>
+
+                <p>
+                    Manage classrooms and room capacity
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+                    🔔
+                </button>
+
+
+                <div class="admin-profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Admin</strong>
+
+                        <span>Administrator</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <section class="page-content">
+
+
+            <!-- HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>Classroom Management</h2>
+
+                    <p>
+                        Add, view and manage available classrooms.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openRoomModal()">
+
+                    + Add Classroom
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTER BAR -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search room or block..."
+                        onkeyup="filterRooms()">
+
+                </div>
+
+
+                <select
+                    id="blockFilter"
+                    onchange="filterRooms()">
+
+                    <option value="all">
+                        All Blocks
+                    </option>
+
+                    <option value="A">
+                        Block A
+                    </option>
+
+                    <option value="B">
+                        Block B
+                    </option>
+
+                    <option value="C">
+                        Block C
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="statusFilter"
+                    onchange="filterRooms()">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Available">
+                        Available
+                    </option>
+
+                    <option value="Maintenance">
+                        Maintenance
+                    </option>
+
+                    <option value="Unavailable">
+                        Unavailable
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ROOM TABLE -->
+
+            <div class="table-panel">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>Classroom Records</h3>
+
+                        <p>
+                            Registered classrooms and capacity
+                        </p>
+
+                    </div>
+
+
+                    <span id="roomCount">
+                        6 Rooms
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table id="roomTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Room</th>
+
+                                <th>Block</th>
+
+                                <th>Capacity</th>
+
+                                <th>Current Status</th>
+
+                                <th>Allocation Status</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr
+                                data-block="A"
+                                data-status="Available">
+
+                                <td>
+                                    <strong>A-101</strong>
+                                </td>
+
+                                <td>Block A</td>
+
+                                <td>
+                                    <strong>140</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status available-status">
+                                        Available
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status free-status">
+                                        Free
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('A-101')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('A-101')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-block="A"
+                                data-status="Available">
+
+                                <td>
+                                    <strong>A-102</strong>
+                                </td>
+
+                                <td>Block A</td>
+
+                                <td>
+                                    <strong>140</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status available-status">
+                                        Available
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status allocated-status">
+                                        Allocated
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('A-102')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('A-102')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-block="A"
+                                data-status="Maintenance">
+
+                                <td>
+                                    <strong>A-103</strong>
+                                </td>
+
+                                <td>Block A</td>
+
+                                <td>
+                                    <strong>120</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status maintenance-status">
+                                        Maintenance
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status blocked-status">
+                                        Unavailable
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('A-103')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('A-103')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-block="B"
+                                data-status="Available">
+
+                                <td>
+                                    <strong>B-201</strong>
+                                </td>
+
+                                <td>Block B</td>
+
+                                <td>
+                                    <strong>120</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status available-status">
+                                        Available
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status free-status">
+                                        Free
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('B-201')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('B-201')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-block="B"
+                                data-status="Available">
+
+                                <td>
+                                    <strong>B-202</strong>
+                                </td>
+
+                                <td>Block B</td>
+
+                                <td>
+                                    <strong>140</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status available-status">
+                                        Available
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status free-status">
+                                        Free
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('B-202')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('B-202')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-block="C"
+                                data-status="Unavailable">
+
+                                <td>
+                                    <strong>C-301</strong>
+                                </td>
+
+                                <td>Block C</td>
+
+                                <td>
+                                    <strong>100</strong> seats
+                                </td>
+
+                                <td>
+
+                                    <span class="status unavailable-status">
+                                        Unavailable
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="status blocked-status">
+                                        Unavailable
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn edit"
+                                        onclick="editRoom('C-301')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="action-btn delete"
+                                        onclick="deleteRoom('C-301')">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD CLASSROOM MODAL -->
+
+    <div id="roomModal"
+         class="modal-overlay">
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>Add New Classroom</h2>
+
+                    <p>
+                        Enter classroom details
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="close-btn"
+                    onclick="closeRoomModal()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <form
+                id="roomForm"
+                onsubmit="saveRoom(event)">
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Room Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="roomNumber"
+                            placeholder="Example: A-104"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Block
+                        </label>
+
+                        <select
+                            id="roomBlock"
+                            required>
+
+                            <option value="">
+                                Select Block
+                            </option>
+
+                            <option value="A">
+                                Block A
+                            </option>
+
+                            <option value="B">
+                                Block B
+                            </option>
+
+                            <option value="C">
+                                Block C
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Capacity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="roomCapacity"
+                            min="1"
+                            placeholder="Example: 140"
+                            required>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select
+                            id="roomStatus"
+                            required>
+
+                            <option value="Available">
+                                Available
+                            </option>
+
+                            <option value="Maintenance">
+                                Maintenance
+                            </option>
+
+                            <option value="Unavailable">
+                                Unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="closeRoomModal()">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Save Classroom
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/classrooms.js"></script>
+
+</body>
+
+</html>
